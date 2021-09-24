@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-ewwmve
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ewwmve
+  namespace: my-nginx-ewwmve
+  labels:
+    name: nginx-ewwmve
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-ewwmve
+  template:
+    metadata:
+      namespace: my-nginx-ewwmve
+      labels:
+        name: nginx-ewwmve
+    spec:
+      containers:
+      - name: nginx-ewwmve
+        image: nginx
+        ports:
+        - containerPort: 80
+
